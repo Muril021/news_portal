@@ -12,11 +12,6 @@ class NewsService extends Service
         parent::__construct($repository);
     }
 
-    public function getAllNews()
-    {
-        return $this->repository->getAllNews();
-    }
-
     public function getPaginatedNews()
     {
         return $this->repository->getPaginatedNews();

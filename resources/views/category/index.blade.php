@@ -69,7 +69,7 @@
             </tbody>
         </table>
         <div class="d-flex justify-content-center">
-            {{ $categories->links('pagination::bootstrap-5') }}
+            {{ $categories->withQueryString()->links('pagination::bootstrap-5') }}
         </div>
     </div>
 @endsection

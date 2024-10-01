@@ -11,12 +11,6 @@ class NewsRepository extends Repository
         parent::__construct($model);
     }
 
-    public function getAllNews()
-    {
-        return $this->model->orderBy('created_at', 'desc')
-            ->get();
-    }
-
     public function getPaginatedNews()
     {
         return $this->model->orderBy('created_at', 'desc')
@@ -28,7 +22,7 @@ class NewsRepository extends Repository
         return $this->model->select($this->table.'.*')
             ->where('user_id', $userId)
             ->orderBy('created_at', 'desc')
-            ->get();
+            ->paginate(10);
     }
 
     public function getNewsById(string $id)
@@ -49,7 +43,7 @@ class NewsRepository extends Repository
             ->join('categories', $this->table.'.category_id', '=', 'categories.id')
             ->whereRaw('LOWER(title) LIKE ?', ['%'.strtolower($search).'%'])
             ->orWhereRaw('LOWER(categories.name) LIKE ?', [strtolower($search)])
-            ->get();
+            ->paginate(10);
     }
 
     public function createNews(array $data)
